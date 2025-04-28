@@ -1,5 +1,7 @@
-Sistema de Prioridade de Acesso de Veículos de Emergência
-📚 Descrição
+# Sistema de Prioridade de Acesso de Veículos de Emergência
+
+## 📚 Descrição:
+
 Este projeto consiste na implementação de um circuito combinacional capaz de detectar a presença de veículos de emergência (ambulância, polícia e bombeiros) e decidir pela abertura automática de uma cancela.
 A cancela será liberada sempre que pelo menos dois desses veículos forem detectados simultaneamente.
 
