@@ -99,11 +99,11 @@ Ambos os circuitos respondem corretamente de acordo com a tabela-verdade.
 
 👥 Equipe
 
-[Abelardo Andrade]
+Abelardo Andrade
 
-[Jullyana Melo]
+Jullyana Melo
 
-[Guilherme Lage]
+Guilherme Lage
 
 
 
