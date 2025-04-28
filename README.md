@@ -98,6 +98,7 @@ A saída dos dois circuitos (original e otimizado) foi comparada e validada.
 Ambos os circuitos respondem corretamente de acordo com a tabela-verdade.
 
 👥 Equipe
+
 [Abelardo Andrade]
 
 [Jullyana Melo]
