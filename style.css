@@ -1,0 +1,111 @@
+/* Custom styles */
+body {
+    background-color: #f8f9fa; /* Light gray background */
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    background-color: #e9ecef;
+}
+
+.card {
+    border-radius: 0.75rem;
+    overflow: hidden; /* Ensures header corners are rounded */
+}
+
+.card-header {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+.bg-primary {
+    background-color: #007bff !important; /* Bootstrap primary blue */
+}
+
+.bg-success {
+    background-color: #28a745 !important; /* Bootstrap success green */
+}
+
+.table thead th {
+    background-color: #e9ecef; /* Light header background */
+    border-bottom-width: 2px;
+}
+
+/* Custom switch size */
+.form-check-lg .form-check-input {
+    height: 1.5em;
+    width: 2.5em;
+    margin-top: 0.25em;
+}
+
+.form-check-lg .form-check-label {
+    margin-top: 0.3em;
+    font-size: 1.1em;
+}
+
+/* Status Indicator SVG Styling */
+.status-indicator {
+    width: 120px; /* Adjust size as needed */
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-circle {
+    transition: fill 0.3s ease-in-out; /* Smooth color change */
+}
+
+.status-text {
+     transition: fill 0.3s ease-in-out; /* Smooth color change */
+     user-select: none; /* Prevent text selection */
+     pointer-events: none; /* Prevent text from interfering with clicks */
+}
+
+/* Colors for the status indicator */
+.status-indicator .closed {
+    fill: #dc3545; /* Bootstrap danger red */
+}
+
+.status-indicator .open {
+    fill: #28a745; /* Bootstrap success green */
+}
+
+.status-indicator .closed-text {
+    fill: white;
+}
+.status-indicator .open-text {
+    fill: white;
+}
+
+#statusText {
+    min-height: 1.5em; /* Prevent layout shift */
+}
+
+/* Style for the highlighted table row based on current inputs */
+.current-row-highlight {
+    font-weight: bold;
+     /* Optional: add a different background if table-success isn't enough */
+}
+
+/* Added some margin to the button triggering the modal */
+.btn-secondary {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Add specific styling for the Logisim code block to control height if needed */
+.card-body pre {
+    max-height: 300px; /* Example: Limit height */
+    overflow-y: auto; /* Add scrollbar if content exceeds max-height */
+}
+
+.footer {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    font-weight: lighter;
+    font-size: medium;
+    font-stretch: condensed;
+    background-color: #e9ecef;
+}

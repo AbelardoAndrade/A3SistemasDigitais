@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de Prioridade de Acesso de Veículos de Emergência</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Projeto A3 - Sistemas Digitais - Live</h1>
+        <h2 class="text-center mb-4">Sistema de Prioridade de Acesso de Veículos de Emergência</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">1. Definição do Problema</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Uma cancela automática em um cruzamento libera passagem de veículos especiais. As regras são:</p>
+                        <ul>
+                            <li>A cancela deve abrir se pelo menos dois entre três tipos de veículos especiais forem detectados ao mesmo tempo.</li>
+                            <li><strong>A</strong> = Ambulância detectada (1 = Sim, 0 = Não)</li>
+                            <li><strong>B</strong> = Polícia detectada (1 = Sim, 0 = Não)</li>
+                            <li><strong>C</strong> = Bombeiros detectados (1 = Sim, 0 = Não)</li>
+                        </ul>
+                        <p><strong>Saída:</strong> <strong>S</strong> = Abrir Cancela (1 = Abrir, 0 = Não abrir)</p>
+                    </div>
+                </div>
+
+                 <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">3. & 4. Construção e Simplificação da Expressão Booleana</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>A partir da tabela-verdade, a expressão booleana canônica (SOP) é:</p>
+                        <p class="text-center fw-bold">S = A'BC + AB'C + ABC' + ABC</p>
+                        <p>Simplificando utilizando teoremas booleanos ou Mapa de Karnaugh, obtemos a expressão otimizada:</p>
+                        <p class="text-center fw-bold">S = BC + A(B ⊕ C)</p>
+                        <p><small>Onde ⊕ representa a operação XOR (Ou Exclusivo).</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Row for Table and Simulation -->
+        <div class="row justify-content-center">
+            <div class="col-md-6 mb-4">
+                 <div class="card shadow-sm h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">2. Tabela-verdade</h5>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <div class="table-responsive flex-grow-1">
+                            <table id="truthTable" class="table table-bordered text-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>A</th>
+                                        <th>B</th>
+                                        <th>C</th>
+                                        <th>S</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                                    <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                                    <tr><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                                    <tr class="table-success"><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+                                    <tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                                    <tr class="table-success"><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                                    <tr class="table-success"><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                                    <tr class="table-success"><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="mt-2 mb-0"><small>Nota: Saída S = 1 quando dois ou mais veículos especiais são detectados.</small></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                 <div class="card shadow-sm h-100">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">5. & 6. Simulação Interativa e Validação</h5>
+                    </div>
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <p class="text-center">Ative os veículos detectados para ver o status da cancela:</p>
+                            <div class="row justify-content-center mb-4">
+                                <div class="col-auto">
+                                    <div class="form-check form-switch form-check-lg">
+                                        <input class="form-check-input" type="checkbox" id="inputA">
+                                        <label class="form-check-label" for="inputA">Ambulância (A)</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check form-switch form-check-lg">
+                                        <input class="form-check-input" type="checkbox" id="inputB">
+                                        <label class="form-check-label" for="inputB">Polícia (B)</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-check form-switch form-check-lg">
+                                        <input class="form-check-input" type="checkbox" id="inputC">
+                                        <label class="form-check-label" for="inputC">Bombeiros (C)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-auto">
+                            <h5>Status da Cancela:</h5>
+                            <div id="gateStatus" class="status-indicator mx-auto mb-3">
+                                <!-- SVG or other visual indicator -->
+                                <svg width="100" height="100" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="status-circle" fill="gray" stroke="#343a40" stroke-width="4"></circle>
+                                    <text x="50" y="55" class="status-text" text-anchor="middle" fill="white" font-size="16" dy=".3em">---</text>
+                                </svg>
+                            </div>
+                            <p id="statusText" class="lead fw-bold">Selecione os veículos acima.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Section for Circuit Diagrams -->
+         <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">7. Diagramas dos Circuitos</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Circuito Original (S = A'BC + AB'C + ABC' + ABC)</h6>
+                        <p>Este diagrama representa a expressão canônica Soma de Produtos (SOP) diretamente da tabela-verdade.</p>
+                         <div class="circuit-diagram original mb-4 text-center">
+                            <!-- SVG Diagram for Original Circuit -->
+                            <svg width="700" height="450" viewBox="0 0 700 450">
+                                <!-- Define Symbols for Gates -->
+                                <defs>
+                                    <!-- AND Gate (3-input) -->
+                                    <symbol id="andGate3" viewBox="0 0 50 60">
+                                        <path d="M5 5 L5 55 L25 55 A25 25 0 0 0 50 30 A25 25 0 0 0 25 5 Z" fill="none" stroke="black" stroke-width="2"/>
+                                        <line x1="0" y1="15" x2="5" y2="15" stroke="black" stroke-width="2"/>
+                                        <line x1="0" y1="30" x2="5" y2="30" stroke="black" stroke-width="2"/>
+                                         <line x1="0" y1="45" x2="5" y2="45" stroke="black" stroke-width="2"/>
+                                        <line x1="50" y1="30" x2="55" y2="30" stroke="black" stroke-width="2"/>
+                                    </symbol>
+                                    <!-- OR Gate (4-input) -->
+                                     <symbol id="orGate4" viewBox="0 0 60 120">
+                                        <path d="M5 5 Q30 0 55 5 Q55 60 55 115 Q30 120 5 115 Q20 60 5 5 Z" fill="none" stroke="black" stroke-width="2"/>
+                                        <line x1="0" y1="20" x2="5" y2="20" stroke="black" stroke-width="2"/>
+                                        <line x1="0" y1="45" x2="5" y2="45" stroke="black" stroke-width="2"/>
+                                        <line x1="0" y1="75" x2="5" y2="75" stroke="black" stroke-width="2"/>
+                                        <line x1="0" y1="100" x2="5" y2="100" stroke="black" stroke-width="2"/>
+                                        <line x1="55" y1="60" x2="60" y2="60" stroke="black" stroke-width="2"/>
+                                    </symbol>
+                                    <!-- NOT Gate (Inverter) -->
+                                    <symbol id="notGate" viewBox="0 0 30 30">
+                                        <polygon points="0,15 20,5 20,25" fill="none" stroke="black" stroke-width="2"/>
+                                        <circle cx="23" cy="15" r="3" fill="none" stroke="black" stroke-width="2"/>
+                                        <line x1="26" y1="15" x2="30" y2="15" stroke="black" stroke-width="2"/>
+                                        <line x1="-5" y1="15" x2="0" y2="15" stroke="black" stroke-width="2"/>
+                                    </symbol>
+                                    <!-- Junction Dot -->
+                                    <circle id="junction" cx="0" cy="0" r="3" fill="black"/>
+                                </defs>
+
+                                <!-- Inputs -->
+                                <line x1="50" y1="50" x2="150" y2="50" stroke="red" stroke-width="2"/><text x="30" y="55" font-size="20">A</text>
+                                <line x1="50" y1="150" x2="150" y2="150" stroke="blue" stroke-width="2"/><text x="30" y="155" font-size="20">B</text>
+                                <line x1="50" y1="250" x2="150" y2="250" stroke="yellow" stroke-width="2"/><text x="30" y="255" font-size="20">C</text>
+
+                                <!-- NOT Gates -->
+                                <use href="#notGate" x="150" y="35" width="30" height="30"/> <!-- NOT A -->
+                                <line x1="180" y1="50" x2="220" y2="50" stroke="red" stroke-width="2"/>
+
+                                <use href="#notGate" x="150" y="135" width="30" height="30"/> <!-- NOT B -->
+                                <line x1="180" y1="150" x2="220" y2="150" stroke="blue" stroke-width="2"/>
+
+                                <use href="#notGate" x="150" y="235" width="30" height="30"/> <!-- NOT C -->
+                                <line x1="180" y1="250" x2="220" y2="250" stroke="yellow" stroke-width="2"/>
+
+                                <!-- Vertical lines for connections -->
+                                <line x1="220" y1="20" x2="220" y1="300" stroke="black" stroke-width="2"/>
+                                <line x1="150" y1="20" x2="150" y1="300" stroke="black" stroke-width="2"/>
+
+                                <!-- Connection Points (Junctions) -->
+                                <use href="#junction" x="220" y="50"/> <!-- A' tap -->
+                                <use href="#junction" x="150" y="50"/> <!-- A tap -->
+                                <use href="#junction" x="220" y="150"/> <!-- B' tap -->
+                                <use href="#junction" x="150" y="150"/> <!-- B tap -->
+                                <use href="#junction" x="220" y="250"/> <!-- C' tap -->
+                                <use href="#junction" x="150" y="250"/> <!-- C tap -->
+
+
+                                <!-- AND gates for minterms -->
+                                <!-- A'BC (y=70) -->
+                                <use href="#andGate3" x="250" y="40" width="50" height="60"/>
+                                <line x1="220" y1="50" x2="250" y2="55" stroke="red" stroke-width="2"/> <!-- A' -->
+                                <line x1="150" y1="150" x2="250" y2="70" stroke="blue" stroke-width="2"/> <!-- B -->
+                                <line x1="150" y1="250" x2="250" y2="85" stroke="yellow" stroke-width="2"/> <!-- C -->
+                                <line x1="305" y1="70" x2="400" y2="70" stroke="black" stroke-width="2"/>
+
+                                <!-- AB'C (y=140) -->
+                                <use href="#andGate3" x="250" y="110" width="50" height="60"/>
+                                <line x1="150" y1="50" x2="250" y2="125" stroke="red" stroke-width="2"/> <!-- A -->
+                                <line x1="220" y1="150" x2="250" y2="140" stroke="blue" stroke-width="2"/> <!-- B' -->
+                                <line x1="150" y1="250" x2="250" y2="155" stroke="yellow" stroke-width="2"/> <!-- C -->
+                                <line x1="305" y1="140" x2="400" y2="140" stroke="black" stroke-width="2"/>
+
+                                <!-- ABC' (y=210) -->
+                                <use href="#andGate3" x="250" y="180" width="50" height="60"/>
+                                <line x1="150" y1="50" x2="250" y2="195" stroke="red" stroke-width="2"/> <!-- A -->
+                                <line x1="150" y1="150" x2="250" y2="210" stroke="blue" stroke-width="2"/> <!-- B -->
+                                <line x1="220" y1="250" x2="250" y2="225" stroke="yellow" stroke-width="2"/> <!-- C' -->
+                                <line x1="305" y1="210" x2="400" y2="210" stroke="black" stroke-width="2"/>
+
+                                <!-- ABC (y=280) -->
+                                <use href="#andGate3" x="250" y="250" width="50" height="60"/>
+                                <line x1="150" y1="50" x2="250" y2="265" stroke="red" stroke-width="2"/> <!-- A -->
+                                <line x1="150" y1="150" x2="250" y2="280" stroke="blue" stroke-width="2"/> <!-- B -->
+                                <line x1="150" y1="250" x2="250" y2="295" stroke="yellow" stroke-width="2"/> <!-- C -->
+                                <line x1="305" y1="280" x2="400" y2="280" stroke="black" stroke-width="2"/>
+
+
+                                <!-- OR gate for summing minterms -->
+                                <use href="#orGate4" x="400" y="110" width="60" height="120"/>
+                                <line x1="400" y1="70" x2="405" y2="125" stroke="black" stroke-width="2"/> <!-- A'BC -->
+                                <line x1="400" y1="140" x2="405" y2="150" stroke="black" stroke-width="2"/> <!-- AB'C -->
+                                <line x1="400" y1="210" x2="405" y2="180" stroke="black" stroke-width="2"/> <!-- ABC' -->
+                                <line x1="400" y1="280" x2="405" y2="205" stroke="black" stroke-width="2"/> <!-- ABC -->
+                                <line x1="460" y1="170" x2="550" y2="170" stroke="black" stroke-width="2"/>
+
+                                <!-- Output S -->
+                                <text x="560" y="175" font-size="20">S</text>
+
+                            </svg>
+                         </div>
+
+                        <h6>Circuito Otimizado (S = BC + A(B ⊕ C))</h6>
+                        <p>Este diagrama representa a expressão simplificada, resultando em um circuito com menos portas lógicas.</p>
+                         <div class="circuit-diagram optimized text-center">
+                             <!-- SVG Diagram for Optimized Circuit -->
+                            <svg width="700" height="300" viewBox="0 0 700 300">
+                                <!-- Define Symbols for Gates -->
+                                <defs>
+                                    <!-- AND Gate -->
+                                    <symbol id="andGate" viewBox="0 0 50 50">
+                                        <path d="M5 5 L5 45 L25 45 A20 20 0 0 0 45 25 A20 20 0 0 0 25 5 Z" fill="none" stroke="black" stroke-width="2"/>
+                                        <line x1="0" y1="15" x2="5" y2="15" stroke="black" stroke-width="2"/>
+                                        <line x1="0" y1="35" x2="5" y2="35" stroke="black" stroke-width="2"/>
+                                        <line x1="45" y1="25" x2="50" y2="25" stroke="black" stroke-width="2"/>
+                                    </symbol>
+                                    <!-- OR Gate -->
+                                    <symbol id="orGate" viewBox="0 0 50 50">
+                                        <path d="M5 5 Q25 0 45 5 Q45 25 45 45 Q25 50 5 45 Q15 25 5 5 Z" fill="none" stroke="black" stroke-width="2"/>
+                                        <line x1="0" y1="15" x2="5" y2="15" stroke="black" stroke-width="2"/>
+                                        <line x1="0" y1="35" x2="5" y2="35" stroke="black" stroke-width="2"/>
+                                        <line x1="45" y1="25" x2="50" y2="25" stroke="black" stroke-width="2"/>
+                                    </symbol>
+                                    <!-- XOR Gate -->
+                                     <symbol id="xorGate" viewBox="0 0 50 50">
+                                        <path d="M0 5 Q10 25 0 45" fill="none" stroke="black" stroke-width="2"/>
+                                        <path d="M5 5 Q25 0 45 5 Q45 25 45 45 Q25 50 5 45 Q15 25 5 5 Z" fill="none" stroke="black" stroke-width="2"/>
+                                        <line x1="5" y1="15" x2="10" y2="15" stroke="black" stroke-width="2"/>
+                                        <line x1="5" y1="35" x2="10" y2="35" stroke="black" stroke-width="2"/>
+                                        <line x1="45" y1="25" x2="50" y2="25" stroke="black" stroke-width="2"/>
+                                    </symbol>
+                                     <!-- Junction Dot -->
+                                    <circle id="junction" cx="0" cy="0" r="3" fill="black"/>
+                                </defs>
+
+                                <!-- Inputs -->
+                                <line x1="50" y1="50" x2="150" y2="50" stroke="red" stroke-width="2"/><text x="30" y="55" font-size="20">A</text>
+                                <line x1="50" y1="125" x2="150" y2="125" stroke="blue" stroke-width="2"/><text x="30" y="130" font-size="20">B</text>
+                                <line x1="50" y1="200" x2="150" y2="200" stroke="yellow" stroke-width="2"/><text x="30" y="205" font-size="20">C</text>
+
+                                <!-- Vertical lines for connections -->
+                                <line x1="150" y1="20" x2="150" y1="280" stroke="black" stroke-width="2"/>
+
+                                <!-- Connection Points (Junctions) -->
+                                <use href="#junction" x="150" y="50"/> <!-- A tap -->
+                                <use href="#junction" x="150" y="125"/> <!-- B tap -->
+                                <use href="#junction" x="150" y="200"/> <!-- C tap -->
+
+
+                                <!-- B XOR C (XOR gate) -->
+                                <use href="#xorGate" x="180" y="100" width="50" height="50"/>
+                                <line x1="150" y1="125" x2="180" y2="115" stroke="blue" stroke-width="2"/> <!-- B -->
+                                <line x1="150" y1="200" x2="180" y2="135" stroke="yellow" stroke-width="2"/> <!-- C -->
+                                <line x1="230" y1="125" x2="280" y2="125" stroke="black" stroke-width="2"/> <!-- XOR output -->
+
+                                <!-- BC (AND gate) -->
+                                <use href="#andGate" x="180" y="175" width="50" height="50"/>
+                                <line x1="150" y1="125" x2="180" y2="190" stroke="blue" stroke-width="2"/> <!-- B -->
+                                <line x1="150" y1="200" x2="180" y2="210" stroke="yellow" stroke-width="2"/> <!-- C -->
+                                <line x1="230" y1="200" x2="350" y2="200" stroke="black" stroke-width="2"/> <!-- BC output -->
+
+
+                                <!-- A AND (B XOR C) (AND gate) -->
+                                <use href="#andGate" x="300" y="100" width="50" height="50"/>
+                                <line x1="150" y1="50" x2="300" y2="115" stroke="red" stroke-width="2"/> <!-- A -->
+                                <line x1="280" y1="125" x2="300" y2="135" stroke="black" stroke-width="2"/> <!-- B XOR C output -->
+                                <line x1="350" y1="125" x2="400" y2="125" stroke="black" stroke-width="2"/> <!-- A(B XOR C) output -->
+
+
+                                <!-- OR gate for final output -->
+                                <use href="#orGate" x="400" y="150" width="50" height="50"/>
+                                <line x1="350" y1="125" x2="400" y2="165" stroke="black" stroke-width="2"/> <!-- A(B XOR C) input -->
+                                <line x1="350" y1="200" x2="400" y2="185" stroke="black" stroke-width="2"/> <!-- BC input -->
+                                <line x1="450" y1="175" x2="550" y2="175" stroke="black" stroke-width="2"/>
+
+                                <!-- Output S -->
+                                <text x="560" y="180" font-size="20">S</text>
+                            </svg>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Section for Logisim File -->
+         <div class="row justify-content-center">
+            <div class="col-md-10 mb-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">8. Arquivo Logisim (.circ)</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Abaixo está o conteúdo XML para um arquivo Logisim que implementa o circuito otimizado <code>S = BC + A(B ⊕ C)</code>.</p>
+                        <p>Salve este código como um arquivo com a extensão <code>.circ</code> (por exemplo, <code>cancela_emergencia.circ</code>) e abra-o no Logisim.</p>
+                        <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project version="1.0" source="3.0.0"&gt;
+  &lt;lib desc="#Base" name="0"&gt;
+    &lt;tool lib="0" name="Probe" ts="1701000000000"/&gt;
+    &lt;tool lib="0" name="LED" ts="1701000000000"/&gt;
+    &lt;tool lib="0" name="Taster" ts="1701000000000"/&gt;
+    &lt;tool lib="0" name="Pin" ts="1701000000000"&gt;
+      &lt;a name="facing" val="east"/&gt;
+      &lt;a name="output" val="true"/&gt;
+      &lt;a name="labelloc" val="east"/&gt;
+    &lt;/tool&gt;
+  &lt;/lib&gt;
+  &lt;lib desc="#Gates" name="1"&gt;
+    &lt;tool lib="1" name="AND Gate" ts="1701000000000"/&gt;
+    &lt;tool lib="1" name="OR Gate" ts="1701000000000"/&gt;
+    &lt;tool lib="1" name="XOR Gate" ts="1701000000000"/&gt;
+  &lt;/lib&gt;
+  &lt;main wiring="main"&gt;&lt;/main&gt;
+  &lt;options&gt;
+    &lt;a name="showtemp" val="false"/&gt;
+    &lt;a name="flatten" val="true"/&gt;
+    &lt;a name="compact" val="false"/&gt;
+    &lt;a name="showunused" val="false"/&gt;
+  &lt;/options&gt;
+  &lt;aliases&gt;&lt;/aliases&gt;
+  &lt;visual&gt;&lt;/visual&gt;
+  &lt;locale&gt;pt&lt;/locale&gt;
+  &lt;attrs&gt;
+    &lt;a name="toolx" val="0"/&gt;
+    &lt;a name="tooky" val="0"/&gt;
+  &lt;/attrs&gt;
+  &lt;contents&gt;
+    &lt;comp lib="0" loc="(130,140)" name="Pin"&gt;
+      &lt;a name="tristate" val="false"/&gt;
+      &lt;a name="label" val="B"/&gt;
+    &lt;/comp&gt;
+    &lt;comp lib="0" loc="(130,210)" name="Pin"&gt;
+      &lt;a name="tristate" val="false"/&gt;
+      &lt;a name="label" val="C"/&gt;
+    &lt;/comp&gt;
+     &lt;comp lib="0" loc="(130,70)" name="Pin"&gt;
+      &lt;a name="tristate" val="false"/&gt;
+      &lt;a name="label" val="A"/&gt;
+    &lt;/comp&gt;
+    &lt;comp lib="0" loc="(560,170)" name="Pin"&gt;
+      &lt;a name="facing" val="west"/&gt;
+      &lt;a name="output" val="true"/&gt;
+      &lt;a name="label" val="S"/&gt;
+      &lt;a name="labelloc" val="east"/&gt;
+    &lt;/comp&gt;
+    &lt;comp lib="1" loc="(260,110)" name="XOR Gate"&gt;
+      &lt;a name="inputs" val="2"/&gt;
+    &lt;/comp&gt;
+    &lt;comp lib="1" loc="(260,180)" name="AND Gate"&gt;
+      &lt;a name="inputs" val="2"/&gt;
+    &lt;/comp&gt;
+     &lt;comp lib="1" loc="(380,90)" name="AND Gate"&gt;
+      &lt;a name="inputs" val="2"/&gt;
+    &lt;/comp&gt;
+    &lt;comp lib="1" loc="(490,150)" name="OR Gate"&gt;
+      &lt;a name="inputs" val="2"/&gt;
+    &lt;/comp&gt;
+    &lt;wire from="(130,140)" to="(150,140)"/&gt;
+    &lt;wire from="(130,210)" to="(150,210)"/&gt;
+    &lt;wire from="(130,70)" to="(330,70)"/&gt;
+    &lt;wire from="(150,140)" to="(150,190)"/&gt;
+    &lt;wire from="(150,190)" to="(210,190)"/&gt;
+    &lt;wire from="(150,140)" to="(210,140)"/&gt;
+  &lt;/contents&gt;
+&lt;/project&gt;
+</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Button to trigger the modal -->
+    <div class="text-center mt-5 mb-4">
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#projectInfoModal">
+            Informações do Projeto
+        </button>
+    </div>
+
+    <!-- Project Info Modal -->
+    <div class="modal fade" id="projectInfoModal" tabindex="-1" aria-labelledby="projectInfoModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectInfoModalLabel">Informações do Projeto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Projeto:</strong> A3 – Sistemas Digitais – Live</p>
+            <p><strong>Professores:</strong></p>
+            <ul>
+                <li>Bruno (bruno.wisintainer@ulife.com.br)</li>
+                <li>Vanessa (vsantos2@ulife.com.br)</li>
+            </ul>
+            <h5 class="text-center mb-3">Desenvolvido por:</h5>
+            <p><strong>Alunos:</strong></p>
+            <ul>
+                <li>Abelardo Andrade Silva - RA 821219021 - Engenharia da Computação</li>
+                <li>Jullyana Glaucia de Melo - RA 32247936 - Engenharia da Computação</li>
+                <li>Guilherme Lage Andrade RA - 321215835 - Engenharia da Computação</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">Criado e desenvolvido por Abelardo Andrade / Jullyana Melo e Guilherme Lage - 2025</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
