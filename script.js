@@ -68,4 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial display update
     updateDisplay();
+
+    // Show summary modal on page load
+    const summaryModal = new bootstrap.Modal(document.getElementById('summaryModal'));
+    summaryModal.show();
 });

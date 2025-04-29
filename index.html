@@ -409,6 +409,62 @@
             </div>
         </div>
 
+        <!-- Auto-show Summary Modal -->
+        <div class="modal fade" id="summaryModal" tabindex="-1" aria-labelledby="summaryModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="summaryModalLabel">Resumo do Projeto</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h5 class="text-primary mb-3">Sistema de Prioridade de Acesso de Veículos de Emergência</h5>
+                
+                <h6 class="fw-bold">Objetivo</h6>
+                <p>Este projeto implementa um sistema de controle de acesso para veículos de emergência em um cruzamento, utilizando uma cancela automática que responde à presença de diferentes tipos de veículos de emergência.</p>
+
+                <h6 class="fw-bold">Funcionamento</h6>
+                <ul>
+                    <li>O sistema monitora três tipos de veículos de emergência: Ambulância (A), Polícia (B) e Bombeiros (C)</li>
+                    <li>A cancela abre automaticamente quando pelo menos dois veículos de emergência são detectados simultaneamente</li>
+                    <li>O sistema utiliza lógica booleana para tomar decisões em tempo real</li>
+                </ul>
+
+                <h6 class="fw-bold">Implementação Técnica</h6>
+                <ul>
+                    <li>Entradas binárias: A, B, C (1 = veículo detectado, 0 = não detectado)</li>
+                    <li>Saída binária: S (1 = abrir cancela, 0 = manter fechada)</li>
+                    <li>Expressão booleana original: S = A'BC + AB'C + ABC' + ABC</li>
+                    <li>Expressão otimizada: S = BC + A(B ⊕ C)</li>
+                </ul>
+
+                <h6 class="fw-bold">Recursos do Projeto</h6>
+                <ul>
+                    <li>Simulação interativa com controles em tempo real</li>
+                    <li>Tabela-verdade com destacamento dinâmico</li>
+                    <li>Diagramas de circuito detalhados (original e otimizado)</li>
+                    <li>Arquivo Logisim (.circ) para simulação offline</li>
+                </ul>
+
+                <h6 class="fw-bold">Benefícios</h6>
+                <ul>
+                    <li>Maior eficiência no controle de tráfego de emergência</li>
+                    <li>Redução do tempo de resposta em situações críticas</li>
+                    <li>Sistema automatizado que minimiza erros humanos</li>
+                    <li>Implementação simples e confiável</li>
+                </ul>
+
+                <div class="alert alert-info mt-3">
+                    <strong>Dica:</strong> Explore a simulação interativa para entender melhor o funcionamento do sistema!
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
 
     <!-- Button to trigger the modal -->
