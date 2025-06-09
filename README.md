@@ -108,11 +108,11 @@ Guilherme Lage
 
 
 📅 Entrega
-Data limite de envio: 13 de Junho
+Data limite de envio: 16 de Junho
 
 Professoras Responsáveis:
 Bruno Wisintainer — bruno.wisintainer@ulife.com.br
 Vanessa Santos — vsantos2@ulife.com.br
 
 🚀 Observação Final
-Este projeto é totalmente baseado em circuitos combinacionais e atende aos requisitos acadêmicos, com foco em clareza, funcionalidade e aplicação prática.
+Este projeto é totalmente baseado em circuitos combinacionais, com foco em clareza, funcionalidade e aplicação prática.
